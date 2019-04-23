@@ -4,10 +4,10 @@ class shadow::logindefs (
                           $pass_min_days  = $shadow::params::pass_min_days_default,
                           $pass_min_len   = $shadow::params::pass_min_len_default,
                           $pass_warn_age  = $shadow::params::pass_warn_age_default,
-                          $uid_min			  = '1000',
-                          $uid_max			  = '60000',
-                          $gid_min			  = '1000',
-                          $gid_max			  = '60000',
+                          $uid_min        = '1000',
+                          $uid_max        = '60000',
+                          $gid_min        = '1000',
+                          $gid_max        = '60000',
                           $sys_uid_min    = $shadow::params::sys_uid_min_default,
                           $sys_uid_max    = $shadow::params::sys_uid_max_default,
                           $sys_gid_min    = $shadow::params::sys_gid_min_default,
@@ -28,8 +28,6 @@ class shadow::logindefs (
       {
         /^[6-7].*$/:
         {
-          $package_name='shadow-utils'
-          $maildir_default = '/var/spool/mail'
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
@@ -42,9 +40,8 @@ class shadow::logindefs (
         {
           case $::operatingsystemrelease
           {
-            /^1[4-7].*$/:
+            /^1[468].*$/:
             {
-              fail('not implemented')
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }

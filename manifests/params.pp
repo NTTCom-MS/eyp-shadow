@@ -1,6 +1,5 @@
 class shadow::params {
 
-  $pass_min_len_default='5'
   $pass_warn_age_default='7'
 
   if(hiera('eypshadow::hardening', false))
@@ -21,12 +20,13 @@ class shadow::params {
   {
     'redhat':
     {
+      $package_name='shadow-utils'
+      $maildir_default = '/var/spool/mail'
+      $pass_min_len_default='5'
       case $::operatingsystemrelease
       {
         /^[5-6].*$/:
         {
-          $package_name='shadow-utils'
-          $maildir_default = '/var/spool/mail'
           $sys_uid_min_default = undef
           $sys_uid_max_default = undef
           $sys_gid_min_default = undef
@@ -34,8 +34,6 @@ class shadow::params {
         }
         /^7.*$/:
         {
-          $package_name='shadow-utils'
-          $maildir_default = '/var/spool/mail'
           $sys_uid_min_default = '201'
           $sys_uid_max_default = '999'
           $sys_gid_min_default = '201'
@@ -46,16 +44,17 @@ class shadow::params {
     }
     'Debian':
     {
+      $pass_min_len_default=undef
       case $::operatingsystem
       {
         'Ubuntu':
         {
           case $::operatingsystemrelease
           {
-            /^1[4-7].*$/:
+            /^1[468].*$/:
             {
-              $package_name='passwd'
-              $maildir_default = '/var/spool/mail'
+              $package_name=[ 'passwd', 'login' ]
+              $maildir_default = '/var/mail'
               #TODO sys_gid_min_default ...
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
