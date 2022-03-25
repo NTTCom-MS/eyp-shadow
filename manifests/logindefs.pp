@@ -40,7 +40,7 @@ class shadow::logindefs (
         {
           case $::operatingsystemrelease
           {
-            /^1[468].*$/:
+            /^1[468].*$|^20.*$/:
             {
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.5
+
+* Bugfix for Ubuntu 20
+
 ## 0.1.4
 
 * Added Ubuntu 20 support
