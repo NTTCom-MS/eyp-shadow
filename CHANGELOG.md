@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4
+
+* Added Ubuntu 20 support
+
 ## 0.1.3
 
 * bugfix Ubuntu 16.04 **login.defs**
