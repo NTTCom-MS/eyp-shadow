@@ -51,7 +51,7 @@ class shadow::params {
         {
           case $::operatingsystemrelease
           {
-            /^1[468].*$/:
+            /^1[468].*$|^20.*$/:
             {
               $package_name=[ 'passwd', 'login' ]
               $maildir_default = '/var/mail'
